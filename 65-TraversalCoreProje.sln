@@ -11,7 +11,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataAccessLayer", "DataAcce
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BusinessLayer", "BusinessLayer\BusinessLayer.csproj", "{ED61718A-B58C-46B9-A9F7-A64BC76F72B5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DTOLayer", "DTOLayer\DTOLayer.csproj", "{9B97081D-0AAF-4680-BBCE-B9A8E1D03287}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DTOLayer", "DTOLayer\DTOLayer.csproj", "{9B97081D-0AAF-4680-BBCE-B9A8E1D03287}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SignalRApi", "SignalRApi\SignalRApi.csproj", "{FA296E4B-F54D-436C-B50B-313C1121C4E3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SignalRConsume", "SignalRConsume\SignalRConsume.csproj", "{56C61B4C-82B6-4D59-A8C8-E8DC0E5D5DB9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SignalRApiForSql", "SignalRApiForSql\SignalRApiForSql.csproj", "{4F4F9775-EBB2-495C-AF78-8D2289E8124C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +45,18 @@ Global
 		{9B97081D-0AAF-4680-BBCE-B9A8E1D03287}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9B97081D-0AAF-4680-BBCE-B9A8E1D03287}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9B97081D-0AAF-4680-BBCE-B9A8E1D03287}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FA296E4B-F54D-436C-B50B-313C1121C4E3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FA296E4B-F54D-436C-B50B-313C1121C4E3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FA296E4B-F54D-436C-B50B-313C1121C4E3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FA296E4B-F54D-436C-B50B-313C1121C4E3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{56C61B4C-82B6-4D59-A8C8-E8DC0E5D5DB9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{56C61B4C-82B6-4D59-A8C8-E8DC0E5D5DB9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{56C61B4C-82B6-4D59-A8C8-E8DC0E5D5DB9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{56C61B4C-82B6-4D59-A8C8-E8DC0E5D5DB9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4F4F9775-EBB2-495C-AF78-8D2289E8124C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4F4F9775-EBB2-495C-AF78-8D2289E8124C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4F4F9775-EBB2-495C-AF78-8D2289E8124C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4F4F9775-EBB2-495C-AF78-8D2289E8124C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

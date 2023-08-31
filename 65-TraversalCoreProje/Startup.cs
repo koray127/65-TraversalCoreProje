@@ -1,12 +1,16 @@
+using _65_TraversalCoreProje.CQRS.Handlers.DestinationHandlers;
 using _65_TraversalCoreProje.Models;
 using BusinessLayer.Container;
 using DataAccessLayer.Concrete;
 using EntityLayer.Concrete;
 using FluentValidation.AspNetCore;
+using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc.Authorization;
+using Microsoft.AspNetCore.Mvc.Razor;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -27,6 +31,14 @@ namespace _65_TraversalCoreProje
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddScoped<GetAllDestinationQueryHandler>();
+            services.AddScoped<GetDestinationByIDQueryHandler>();
+            services.AddScoped<CreateDestinationCommandHandler>();
+            services.AddScoped<RemoveDestinationCommandHandler>();
+            services.AddScoped<UpdateDestinationCommandHandler>();
+
+            services.AddMediatR(typeof(Startup));
+
             services.AddLogging(x =>
             {
                 x.ClearProviders();
@@ -37,7 +49,7 @@ namespace _65_TraversalCoreProje
             services.AddIdentity<AppUser, AppRole>
                 ().AddEntityFrameworkStores<Context>
                 ().AddErrorDescriber<CustomIdentityValidator>
-                ().AddEntityFrameworkStores<Context>();
+                ().AddTokenProvider<DataProtectorTokenProvider<AppUser>>(TokenOptions.DefaultProvider).AddEntityFrameworkStores<Context>();
 
             services.AddHttpClient();
 
@@ -58,7 +70,17 @@ namespace _65_TraversalCoreProje
 
             });
 
-            services.AddMvc();
+            services.AddLocalization(opt =>
+            {
+                opt.ResourcesPath = "Resources";
+            });
+
+            services.AddMvc().AddViewLocalization(LanguageViewLocationExpanderFormat.Suffix).AddDataAnnotationsLocalization();
+
+            services.ConfigureApplicationCookie(options =>
+            {
+                options.LoginPath = "/Login/SignIn/";
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -87,18 +109,16 @@ namespace _65_TraversalCoreProje
 
             app.UseAuthorization();
 
+            var suppertedCultures = new[] { "en", "fr", "es", "gr", "tr","de" };
+            var localizationOptions = new RequestLocalizationOptions().SetDefaultCulture(suppertedCultures[4]).AddSupportedCultures
+                (suppertedCultures).AddSupportedUICultures(suppertedCultures);
+            app.UseRequestLocalization(localizationOptions);
+
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
-            });
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapControllerRoute(
-                  name: "areas",
-                  pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}"
-                );
+                    pattern: "{controller=Default}/{action=Index}/{id?}");
             });
             app.UseEndpoints(endpoints =>
             {
