@@ -28,8 +28,13 @@ namespace _65_TraversalCoreProje.Controllers
         }
 
         //[HttpGet]
+        
         public async Task<IActionResult> DestinationDetails(int id)
         {
+            if(User.Identity.Name == null)
+            {
+                return RedirectToAction("/Login/SignIn/");
+            }
             ViewBag.i = id;
             ViewBag.destID = id;
             var value = await _userManager.FindByNameAsync(User.Identity.Name);
